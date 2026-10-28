@@ -446,11 +446,6 @@ html, body { touch-action: manipulation; -webkit-tap-highlight-color: transparen
 .cv-bob { animation: cv-bob 3s ease-in-out infinite; }
 .cv-flicker { animation: cv-flicker 3s ease-in-out infinite; }
 
-/* ---- opening film ---- */
-.cine-bar { position: absolute; left: 0; right: 0; height: 9%; background: #000; z-index: 5; pointer-events: none; animation: cine-in 0.9s ease-out; }
-.cine-bar.top { top: 0; }
-.cine-bar.bottom { bottom: 0; }
-@keyframes cine-in { from { height: 0; } to { height: 9%; } }
 .cam-flash { position: absolute; inset: 0; background: #fff; z-index: 6; pointer-events: none; animation: cam-flash 0.55s ease-out forwards; }
 @keyframes cam-flash { from { opacity: 0.95; } to { opacity: 0; } }
 
@@ -458,14 +453,3 @@ html, body { touch-action: manipulation; -webkit-tap-highlight-color: transparen
 .bubble { max-width: min(360px, calc(100vw - 32px)); overflow-wrap: anywhere; }
 .bubble.big { max-width: min(360px, calc(100vw - 32px)); }
 
-.cine-fade { position: absolute; inset: 0; background: #000; z-index: 7; pointer-events: none; animation: cine-fade 1.3s ease-out forwards; }
-@keyframes cine-fade { from { opacity: 1; } to { opacity: 0; } }
-.rec-ui { position: absolute; inset: 9% 0; z-index: 4; pointer-events: none; box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.35); }
-.rec-corner { position: absolute; width: 44px; height: 44px; border: 3px solid rgba(255, 255, 255, 0.9); }
-.rec-corner.tl { top: 18px; left: 18px; border-right: 0; border-bottom: 0; }
-.rec-corner.tr { top: 18px; right: 18px; border-left: 0; border-bottom: 0; }
-.rec-corner.bl { bottom: 18px; left: 18px; border-right: 0; border-top: 0; }
-.rec-corner.br { bottom: 18px; right: 18px; border-left: 0; border-top: 0; }
-.rec-dot { position: absolute; top: 24px; left: 80px; color: #ff3b4f; font-weight: 700; letter-spacing: 1px; animation: rec-blink 1s steps(2) infinite; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); }
-.rec-time { position: absolute; top: 24px; right: 80px; color: #fff; font-variant-numeric: tabular-nums; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); }
-@keyframes rec-blink { 50% { opacity: 0.2; } }

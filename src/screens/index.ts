@@ -2,7 +2,6 @@
 import { gallery } from './gallery';
 import { titleScreen } from './title';
 import { introScreen } from './intro';
-import { openingScreen } from './opening';
 import { investScreen, menuSelectScreen, shopTypeScreen } from './setup';
 import { marketScreen } from './market';
 import { hireScreen, strategyScreen, townMapScreen } from './plan';
@@ -17,7 +16,6 @@ import { coopDayScreen } from './coopDay';
 
 export function registerAll(): void {
   registerScreen('title', titleScreen);
-  registerScreen('opening', openingScreen);
   registerScreen('intro', introScreen);
   registerScreen('shopType', shopTypeScreen);
   registerScreen('invest', investScreen);
