@@ -294,6 +294,7 @@ export function createCharacter(spec: CharSpec): Character {
     extraLooks.set(key, spec.extra);
     ensureTemplate(key);
   }
-  if (key && templates.has(key)) return new MiyuModel(key);
+  // build the detailed model on demand, so a screen never falls back to the plain chibi just because the warm-up isn't done
+  if (key && ensureTemplate(key)) return new MiyuModel(key);
   return new Chibi(spec);
 }
