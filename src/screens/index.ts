@@ -1,0 +1,44 @@
+﻿import { registerScreen } from '../game/flow';
+import { gallery } from './gallery';
+import { titleScreen } from './title';
+import { introScreen } from './intro';
+import { openingScreen } from './opening';
+import { investScreen, menuSelectScreen, shopTypeScreen } from './setup';
+import { marketScreen } from './market';
+import { hireScreen, strategyScreen, townMapScreen } from './plan';
+import { deliveryScreen, furnishScreen, furnitureStoreScreen } from './furniture';
+import { bankScreen, landlordScreen, mapScreen } from './town';
+import { researchScreen } from './research';
+import { shopDayScreen } from './shopDay';
+import { endingScreen, nightScreen, summaryScreen } from './summary';
+import { coopWaitScreen } from './coopLobby';
+import { coopMorningScreen } from './coopMorning';
+import { coopDayScreen } from './coopDay';
+
+export function registerAll(): void {
+  registerScreen('title', titleScreen);
+  registerScreen('opening', openingScreen);
+  registerScreen('intro', introScreen);
+  registerScreen('shopType', shopTypeScreen);
+  registerScreen('invest', investScreen);
+  registerScreen('menuSelect', menuSelectScreen);
+  registerScreen('market', marketScreen);
+  registerScreen('hire', hireScreen);
+  registerScreen('townMap', townMapScreen);
+  registerScreen('strategy', strategyScreen);
+  registerScreen('furnitureStore', furnitureStoreScreen);
+  registerScreen('delivery', deliveryScreen);
+  registerScreen('furnish', furnishScreen);
+  registerScreen('research', researchScreen);
+  registerScreen('map', mapScreen);
+  registerScreen('landlord', landlordScreen);
+  registerScreen('bank', bankScreen);
+  registerScreen('shopDay', shopDayScreen);
+  registerScreen('summary', summaryScreen);
+  registerScreen('night', nightScreen);
+  registerScreen('ending', endingScreen);
+  registerScreen('coopWait', coopWaitScreen);
+  registerScreen('coopMorning', coopMorningScreen);
+  registerScreen('coopDay', coopDayScreen);
+  if (import.meta.env.DEV) registerScreen('gallery', gallery);
+}

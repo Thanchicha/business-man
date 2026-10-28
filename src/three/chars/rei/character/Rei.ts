@@ -1,0 +1,89 @@
+﻿import * as THREE from 'three';
+import { buildAccessories } from './accessories';
+import { Animator, type Gesture } from './anim/Animator';
+import { Rig, skinCharacter } from './anim/skeleton';
+import { buildBag } from './bag';
+import { buildBody } from './body';
+import { buildBoots } from './boots';
+import { HEAD_LIFT } from './build';
+import { buildFace, type FacePart } from './face/Face';
+import { buildHair } from './hair';
+import { buildOutfit } from './outfit';
+import type { Expression, Part } from './types';
+
+export interface ReiOptions {
+  /** Deterministic posing for screenshots (no smoothing, walking stays in place). */
+  instant?: boolean;
+  /** Walk in place; the host moves `root` itself. */
+  inPlace?: boolean;
+}
+
+/** Assembles every part of Rei, rigs and skins it, and exposes the runtime controls. */
+export class Rei {
+  readonly root = new THREE.Group();
+  readonly rig = new Rig();
+  private readonly parts: Part[];
+  private readonly face: FacePart;
+  private readonly animator: Animator;
+  private expression: Expression = 'normal';
+  private talking = false;
+
+  constructor(opts: ReiOptions = {}) {
+    this.root.name = 'Rei';
+    this.face = buildFace();
+    this.parts = [buildBody(), this.face, buildHair(), buildOutfit(), buildAccessories(), buildBoots(), buildBag()];
+    const parts = new THREE.Group();
+    for (const part of this.parts) parts.add(part.object);
+    this.root.add(parts);
+    skinCharacter(this.root, this.rig);
+    // Expression symbols (sprites) ride on the head bone.
+    const effects = this.root.getObjectByName('faceEffects');
+    if (effects) {
+      // Sprites aren't skinned, so lift them with the head onto Rei's taller body first.
+      effects.position.y += HEAD_LIFT;
+      this.rig.bone('head').attach(effects);
+    }
+    this.animator = new Animator(this.rig, this.rig.root, { instant: opts.instant, inPlace: opts.inPlace });
+  }
+
+  get currentExpression(): Expression {
+    return this.expression;
+  }
+
+  setExpression(expr: Expression): void {
+    this.expression = expr;
+    this.face.setExpression(expr);
+  }
+
+  get walking(): boolean {
+    return this.animator.walking;
+  }
+
+  setWalking(on: boolean): void {
+    this.animator.walking = on;
+  }
+
+  get isTalking(): boolean {
+    return this.talking;
+  }
+
+  setTalking(on: boolean): void {
+    this.talking = on;
+    this.animator.talking = on;
+    this.face.setTalking(on);
+  }
+
+  playGesture(g: Gesture): void {
+    this.animator.play(g);
+  }
+
+  /** Where he stands on the ground plane (moves while walking). */
+  get groundPosition(): THREE.Vector3 {
+    return this.rig.root.position;
+  }
+
+  update(time: number, delta: number): void {
+    this.animator.update(time, delta);
+    for (const part of this.parts) part.update?.(time, delta);
+  }
+}

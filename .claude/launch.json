@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "game", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev"], "port": 5173 },
+    { "name": "shion", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "shion-viewer", "run", "dev"], "port": 5180 },
+    { "name": "rei", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "rei-viewer", "run", "dev"], "port": 5181 },
+    { "name": "kuro", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "kuro-viewer", "run", "dev"], "port": 5183 },
+    { "name": "kira", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "kira-viewer", "run", "dev"], "port": 5184 },
+    { "name": "miyu", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "miyu-viewer", "run", "dev"], "port": 5185 }
+  ]
+}

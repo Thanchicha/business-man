@@ -1,0 +1,26 @@
+{
+  "name": "kira-viewer",
+  "version": "1.0.0",
+  "description": "Interactive 3D chibi character viewer for Kira (Three.js + TypeScript)",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "shot": "node tools/shot.mjs",
+    "compare": "node tools/compare.mjs",
+    "crop-ref": "node tools/crop-reference.mjs"
+  },
+  "type": "module",
+  "dependencies": {
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/three": "^0.186.0",
+    "puppeteer-core": "^25.16.0",
+    "sharp": "^0.35.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
+  },
+  "private": true
+}
